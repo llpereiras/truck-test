@@ -9,6 +9,11 @@ module Api
       render json: @shipments
     end
 
+    def nearby_truckers
+      @truckers = Shipment.find(params[:id]).vehicles
+      render partial: 'shipments/nearby_truckers', locals: { truckers: @truckers }
+    end
+
     # GET /shipments/1
     # GET /shipments/1.json
     def show

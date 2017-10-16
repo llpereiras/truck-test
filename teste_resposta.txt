@@ -95,7 +95,8 @@ Content-Type: application/json; charset="utf-8"
             "name": "Lincoln Falcão",
             "phone": "(11) 97654-3210",
             "vehicle": {
-                "type": "Truck", "body_type": "Baú"
+                "type": "Truck", 
+                "body_type": "Baú"
             }
         }
     ]
