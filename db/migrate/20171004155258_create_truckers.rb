@@ -3,7 +3,8 @@ class CreateTruckers < ActiveRecord::Migration[5.1]
     create_table :truckers do |t|
       t.string :name
       t.string :phone
-      t.references :vehicle, foreign_key: true
+      t.integer :type
+      t.integer :body_type
     end
   end
 end
