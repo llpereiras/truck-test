@@ -9,8 +9,7 @@ class ShipmentService
       contact = ContactService.save(shipment_params[:contact])
       origin = OriginService.save(shipment_params[:origin])
       destination = DestinationService.save(shipment_params[:destination])
-      vehicles = shipment_params[:vehicles]
-      vehicles = tratar_vehicles(vehicles)
+      vehicles = tratar_vehicles(shipment_params)
       vehicles = TruckerService.create_vehicles(vehicles)
       new_shipment = shipment_params
       new_shipment[:contact] = contact
@@ -24,16 +23,19 @@ class ShipmentService
       @shipment.save
       @shipment
     rescue => e
-      return {id: 0, error: e.message, stack: e.backtrace.each { |line| puts line } }
+      stack = e.backtrace.each { |line| puts line } if Rails.env == 'development'
+      return {id: 0, error: e.message, stack: stack.to_s }
     end
   end
 
-  def self.tratar_vehicles(vehicles)
-    vehicles.each do |v|
-      v["name"]  = shipment_params[:contact]["name"]
-      v["phone"]  = shipment_params[:contact]["phone"]
-   end
-   vehicles
+  def self.tratar_vehicles(params)
+    vehicles = []
+    params[:vehicles].each do |vehicle|
+      vehicle["name"]  = params[:contact]["name"]
+      vehicle["phone"]  = params[:contact]["phone"]
+      vehicles << vehicle
+    end
+    vehicles
   end
 
 end
