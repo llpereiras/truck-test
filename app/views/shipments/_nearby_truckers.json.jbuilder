@@ -1,9 +1,9 @@
-json.truckers(@truckers) do |trucker|
+json.truckers do
   json.id trucker.id
   json.name trucker.name
   json.phone trucker.phone
-  json.vehicle do |vehicle|
-     json.phone vehicle.type
-     json.phone vehicle.body_type
+  json.vehicle do
+     json.type trucker.type.humanize
+     json.body_type trucker.body_type
   end
 end

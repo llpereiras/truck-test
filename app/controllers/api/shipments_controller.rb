@@ -10,8 +10,9 @@ module Api
     end
 
     def nearby_truckers
-      @truckers = Shipment.find(params[:id]).vehicles
-      render partial: 'shipments/nearby_truckers', locals: { truckers: @truckers }
+      @shipment = Shipment.find(params[:id])
+      trucker = Trucker.find_by_origin_id(@shipment.origin.id)
+      render partial: 'shipments/nearby_truckers', locals: { trucker: trucker }
     end
 
     # GET /shipments/1
