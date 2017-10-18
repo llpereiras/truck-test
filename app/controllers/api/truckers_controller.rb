@@ -1,6 +1,6 @@
 module Api
   class TruckersController < ApplicationController
-    before_action :set_trucker, only: [:show, :update, :destroy]
+    before_action :set_trucker, only: [:show, :update, :destroy, :last_location]
 
     # GET /truckers
     # GET /truckers.json
@@ -11,6 +11,14 @@ module Api
     # GET /truckers/1
     # GET /truckers/1.json
     def show
+      render partial: 'truckers/trucker', locals: { shipment: @trucker }
+    end
+
+    def last_location
+      where = {city: params[:location][:city], state: params[:location][:state]}
+      origin  = Origin.where(where).first
+      @trucker.update_columns(origin_id: origin.id)
+      render json: {}, status: :no_content
     end
 
     # POST /truckers
