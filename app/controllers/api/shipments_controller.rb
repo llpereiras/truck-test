@@ -12,6 +12,7 @@ module Api
     def nearby_truckers
       @shipment = Shipment.find(params[:id])
       trucker = Trucker.find_by_origin_id(@shipment.origin.id)
+      return render json: {}, status: :not_found unless trucker
       render partial: 'shipments/nearby_truckers', locals: { trucker: trucker }
     end
 
