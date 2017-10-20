@@ -17,6 +17,7 @@ module Api
     def last_location
       where = {city: params[:location][:city], state: params[:location][:state]}
       origin  = Origin.where(where).first
+      return render json: {}, status: :not_found unless origin
       @trucker.update_columns(origin_id: origin.id)
       render json: {}, status: :no_content
     end
