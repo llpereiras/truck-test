@@ -1,1 +1,1 @@
-json.extract! trucker, :id, :name, :phone, :vehicle_id
+json.extract! @trucker, :id, :name, :phone
