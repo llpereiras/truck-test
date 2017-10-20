@@ -21,4 +21,20 @@ RSpec.describe 'Api::TruckersRequest', type: :request do
     end
   end
 
+  describe 'GET #get_nearby_truckers_content' do
+    context 'Busca um shipment pela url' do
+      it 'Espera-se que o http_status seja created' do
+        get "/api/shipments/1/nearby_truckers", headers: { 'Content-Type' => 'application/json' }
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'Espera-se que o conteúdo seja igual ao mockado FakeShipment.get_show_content' do
+        get "/api/shipments/1/nearby_truckers", headers: { 'Content-Type' => 'application/json' }
+        expect(response.body).to eq(FakeShipment.get_nearby_truckers_content.to_json)
+      end
+
+    end
+  end
+
+
 end
