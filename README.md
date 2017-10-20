@@ -1,24 +1,67 @@
-# README
+# Truck Shipments
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este projeto visa fornecer o cadastro de caminhoneiros para que sejam encontradas 
+remessa a serem feitas, auxiliando para que carga e caminhoneiro sejam encontrados 
+uns pelos outros.
 
-Things you may want to cover:
+# Instalação do ambiente do servidor
 
-* Ruby version
+https://gorails.com/setup/
 
-* System dependencies
+# Cópia do projeto
 
-* Configuration
+```
+git clone https://github.com/llpereiras/truck-test
+```
 
-* Database creation
+# Configuração do projeto
 
-* Database initialization
+Acesse a pasta onde foi clonado o projeto e execute os comandos abaixo
 
-* How to run the test suite
+#### Instalação das dependências
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+bundle install
+```
 
-* Deployment instructions
+#### Criar o banco de dados
+```
+rails db:create
+```
 
-* ...
+#### Criar as tabelas
+```
+rails db:migrate
+```
+
+#### Levantar o servidor da aplicação
+```
+rails s
+```
+
+A aplicação passará a responder pela url http://localhost:3000
+
+
+# Testes unitários
+
+#### Instalação das dependências
+
+```
+bundle install
+```
+
+#### Criar o banco de dados
+```
+rails db:create
+```
+
+#### Criar as tabelas
+```
+rails db:migrate
+```
+
+#### Executando os testes
+
+```
+rspec spec
+```
